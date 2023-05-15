@@ -1,4 +1,7 @@
+import 'package:apptacc/presentation/screens/home_screen.dart';
 import 'package:flutter/material.dart';
+
+import 'config/theme.dart';
 
 void main() {
   runApp(const MainApp());
@@ -9,11 +12,13 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      theme: AppTheme().getTheme(),
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
+        appBar: AppBar(title: Text('AppTacc'),backgroundColor: AppTheme.naranja,),
+        backgroundColor: AppTheme.fondo,
+        body: const HomeScreen()
       ),
     );
   }

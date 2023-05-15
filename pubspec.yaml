@@ -9,6 +9,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_feather_icons: ^2.0.0
+
+
 
 dev_dependencies:
   flutter_test:
@@ -17,3 +20,10 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  fonts:
+    - family: Intro
+      fonts:
+        - asset: fonts/intro.otf
+
+assets: 
+    - assets/images/
