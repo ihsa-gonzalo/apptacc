@@ -1,7 +1,6 @@
 import 'package:apptacc/config/theme.dart';
 import 'package:apptacc/model/home_menu_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
 class HomeCell extends StatelessWidget {
   final HomeMenuModel menu;
@@ -17,7 +16,7 @@ class HomeCell extends StatelessWidget {
       child: GestureDetector(
         onTap: () 
         {
-          Navigator.pushNamed(context, "shops",arguments: "cafe");
+          Navigator.pushNamed(context, "shops",arguments: menu.categoria);
         },
         child: Container(
         height: 150,

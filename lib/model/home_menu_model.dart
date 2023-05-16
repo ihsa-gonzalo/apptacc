@@ -6,6 +6,8 @@ class HomeMenuModel
 
   final IconData icono;
 
-  HomeMenuModel(this.text, this.icono);
+  final String categoria;
+
+  HomeMenuModel(this.text, this.icono, this.categoria);
   
 }
