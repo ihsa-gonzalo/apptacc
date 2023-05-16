@@ -10,8 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_feather_icons: ^2.0.0
-
-
+  another_flutter_splash_screen:
 
 dev_dependencies:
   flutter_test:
@@ -24,6 +23,5 @@ flutter:
     - family: Intro
       fonts:
         - asset: fonts/intro.otf
-
-assets: 
-    - assets/images/
+  assets: 
+    - assets/images/logo.png

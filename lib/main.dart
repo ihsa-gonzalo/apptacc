@@ -1,5 +1,6 @@
 import 'package:apptacc/presentation/screens/home_screen.dart';
 import 'package:apptacc/presentation/screens/list_shops.dart';
+import 'package:apptacc/presentation/screens/splash_screen.dart';
 import 'package:apptacc/presentation/widgets/shop_row.dart';
 import 'package:flutter/material.dart';
 
@@ -17,8 +18,9 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: "/",
       routes: {
-        "/": (context) => HomeScreen(),
-        "shops": (context) => ListShops(),
+        "/": (context) => const SplashScreen(),
+        "home": (context) => const HomeScreen(),
+        "shops": (context) => const ListShops(),
       },
       theme: AppTheme().getTheme(),
       debugShowCheckedModeBanner: false,

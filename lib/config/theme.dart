@@ -4,6 +4,7 @@ class AppTheme {
 
   static Color get fondo => const Color(0xFFfff3e6);
   static Color get naranja => const Color(0xFFD17102);
+  static Color get light_naranja => Color.fromARGB(255, 250, 193, 127);
 
   static double get textSizeMedium => 20;
 
