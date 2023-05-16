@@ -1,6 +1,7 @@
 import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
 import 'package:apptacc/config/theme.dart';
 import 'package:apptacc/presentation/screens/home_screen.dart';
+import 'package:apptacc/presentation/screens/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -24,7 +25,7 @@ class SplashScreen extends StatelessWidget {
           duration: const Duration(milliseconds: 1500),
           animationDuration: const Duration(milliseconds: 1000),
           onAnimationEnd: () => debugPrint("On Scale End"),
-          defaultNextScreen: const HomeScreen(),
+          defaultNextScreen: const OnBoardingScreen(),
         );
   }
 }
