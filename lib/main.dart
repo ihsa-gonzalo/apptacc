@@ -1,4 +1,6 @@
 import 'package:apptacc/presentation/screens/home_screen.dart';
+import 'package:apptacc/presentation/screens/list_shops.dart';
+import 'package:apptacc/presentation/widgets/shop_row.dart';
 import 'package:flutter/material.dart';
 
 import 'config/theme.dart';
@@ -13,13 +15,13 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      initialRoute: "/",
+      routes: {
+        "/": (context) => HomeScreen(),
+        "shops": (context) => ListShops(),
+      },
       theme: AppTheme().getTheme(),
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(title: Text('AppTacc'),backgroundColor: AppTheme.naranja,),
-        backgroundColor: AppTheme.fondo,
-        body: const HomeScreen()
-      ),
     );
   }
 }

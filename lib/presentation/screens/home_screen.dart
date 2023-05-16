@@ -10,35 +10,42 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Center(
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                HomeCell(menu: HomeMenu.list[0]),
-                HomeCell(menu: HomeMenu.list[1])
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                HomeCell(menu: HomeMenu.list[2]),
-                HomeCell(menu: HomeMenu.list[3])
-              ],
-            ),
-          ],
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('AppTacc'),
+        backgroundColor: AppTheme.naranja,
       ),
-    ));
+      backgroundColor: AppTheme.fondo,
+      body: SafeArea(
+          child: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  HomeCell(menu: HomeMenu.list[0]),
+                  HomeCell(menu: HomeMenu.list[1])
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  HomeCell(menu: HomeMenu.list[2]),
+                  HomeCell(menu: HomeMenu.list[3])
+                ],
+              ),
+            ],
+          ),
+        ),
+      )),
+    );
   }
 }
