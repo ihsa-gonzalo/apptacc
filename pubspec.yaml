@@ -11,7 +11,7 @@ dependencies:
     sdk: flutter
   flutter_feather_icons: ^2.0.0
   another_flutter_splash_screen:
-  introduction_screen: ^3.1.8
+  introduction_screen: ^3.1.8 #https://pub.dev/packages/introduction_screen
 
 dev_dependencies:
   flutter_test:
