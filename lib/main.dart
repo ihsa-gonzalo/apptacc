@@ -1,5 +1,6 @@
 import 'package:apptacc/presentation/screens/home_screen.dart';
 import 'package:apptacc/presentation/screens/list_shops.dart';
+import 'package:apptacc/presentation/screens/login_screen.dart';
 import 'package:apptacc/presentation/screens/onboarding_screen.dart';
 import 'package:apptacc/presentation/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,8 @@ class MainApp extends StatelessWidget {
         "/": (context) => const SplashScreen(),
         "onboarding": (context) => const OnBoardingScreen(),
         "home": (context) => const HomeScreen(),
-        "shops": (context) => const ListShops(),
+        "login": (context) => const LoginScreen(),
+        "shops": (context) => const ListShops(null),
       },
       theme: AppTheme().getTheme(),
       debugShowCheckedModeBanner: false,
