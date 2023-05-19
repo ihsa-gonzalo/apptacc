@@ -8,3 +8,5 @@ abstract class ShopsEvent extends Equatable {
 }
 
 class GetShopList extends ShopsEvent {}
+
+class GetLocalShopList extends ShopsEvent {}

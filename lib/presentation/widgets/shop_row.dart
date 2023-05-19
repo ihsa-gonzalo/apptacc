@@ -27,10 +27,11 @@ class ShopRow extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           children: [
             Container(
+              padding: EdgeInsets.all(10),
                 margin: const EdgeInsets.only(bottom: 0, top: 0, left: 10),
                 child: Expanded(
                   child: Image.network(
-                    shopModel.URL!,
+                    shopModel.imagenURL!,
                     fit: BoxFit.cover,
                     width: 100,
                     height: 100,

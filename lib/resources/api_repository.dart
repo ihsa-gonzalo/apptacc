@@ -8,6 +8,11 @@ class ApiRepository {
   Future<List<ShopModel>> fetchShopList() {
     return _provider.fetchShopList();
   }
+
+  Future<List<ShopModel>> fetchLocalShopList() 
+  {
+    return _provider.fetchLocalShopList();
+  }
 }
 
 class NetworkError extends Error {}

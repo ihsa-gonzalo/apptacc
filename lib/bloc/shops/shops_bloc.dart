@@ -11,6 +11,7 @@ class ShopsBloc extends Bloc<ShopsEvent, ShopsState>
   {
     final ApiRepository _apiRepository = ApiRepository();
 
+    
     on<GetShopList>((event, emit) async 
     {
       try 
@@ -27,5 +28,19 @@ class ShopsBloc extends Bloc<ShopsEvent, ShopsState>
         emit(const ShopsError("Failed to fetch data. is your device online?"));
       }
     });
+    
+
+    on<GetLocalShopList>((event, emit) async
+    {
+      
+        emit(ShopsLoading());
+        final mList = await _apiRepository.fetchLocalShopList();
+        emit(ShopsLoaded(mList));
+        if (mList.isEmpty) {
+          emit(const ShopsError("Lista vacia"));
+        }
+
+    },);
+
   }
 }

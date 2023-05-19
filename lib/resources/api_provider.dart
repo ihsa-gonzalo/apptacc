@@ -4,20 +4,29 @@ import 'package:apptacc/model/shop_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
+import '../data/local_shops.dart';
+
 class ApiProvider {
   final Dio _dio = Dio();
-  final String _url = 'https://apptacc-api.onrender.com/comercios/?filtradoPor=cc&filtro=Restaurante&lat=-37.99046981482626&long=-57.558342038624005&radio=50';
+  final String _url =
+      'https://apptacc-api.onrender.com/comercios/?filtradoPor=cc&filtro=Restaurante&lat=-37.99046981482626&long=-57.558342038624005&radio=50';
 
-  Future<List<ShopModel>> fetchShopList() async
-   {
-      Response response = await _dio.get(_url);
-      final jsonData = json.decode(response.data);
+  Future<List<ShopModel>> fetchShopList() async {
+    Response response = await _dio.get(_url);
+    final jsonData = json.decode(response.data);
 
-      List<ShopModel> shops = List<ShopModel>.from(jsonData.map((x) => ShopModel.fromJson(x)));
+    List<ShopModel> shops =
+        List<ShopModel>.from(jsonData.map((x) => ShopModel.fromJson(x)));
 
-      return shops;
+    return shops;
+  }
 
-      
-    
+  Future<List<ShopModel>> fetchLocalShopList() async {
+    await Future.delayed(const Duration(seconds: 2));
+
+    final List<ShopModel> shops =
+        localShops.map((shop) => ShopModel.fromJson(shop)).toList();
+
+    return shops;
   }
 }

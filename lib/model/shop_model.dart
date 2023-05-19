@@ -87,4 +87,5 @@ class ShopModel {
     data['distance'] = distance;
     return data;
   }
+
 }
