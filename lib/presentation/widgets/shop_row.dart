@@ -1,9 +1,12 @@
+import 'package:apptacc/model/shop_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../config/theme.dart';
 
 class ShopRow extends StatelessWidget {
-  const ShopRow({super.key});
+  final ShopModel shopModel;
+
+  const ShopRow(this.shopModel, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +29,24 @@ class ShopRow extends StatelessWidget {
             Container(
                 margin: const EdgeInsets.only(bottom: 0, top: 0, left: 10),
                 child: Expanded(
-                  child: Icon(
-                    Icons.abc,
-                    size: 50,
+                  child: Image.network(
+                    shopModel.URL!,
+                    fit: BoxFit.cover,
+                    width: 100,
+                    height: 100,
+                    loadingBuilder: (context, child, loadingProgress) {
+                      if (loadingProgress == null) {
+                        return child;
+                      }
+                      return Center(
+                        child: CircularProgressIndicator(
+                          value: loadingProgress.expectedTotalBytes != null
+                              ? loadingProgress.cumulativeBytesLoaded /
+                                  loadingProgress.expectedTotalBytes!
+                              : null,
+                        ),
+                      );
+                    },
                   ),
                 )),
             Container(
@@ -38,19 +56,19 @@ class ShopRow extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Categoria",
+                  Text(shopModel.nombre!,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: AppTheme.textSizeMedium,
                           fontFamily: 'Intro')),
-                  Text("Direccion",
+                  Text(shopModel.direccion!,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: AppTheme.textSizeMedium,
                           fontFamily: 'Intro')),
-                  Text("aaaa",
+                  Text(shopModel.categorias.toString(),
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Colors.white,

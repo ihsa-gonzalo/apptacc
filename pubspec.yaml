@@ -12,6 +12,10 @@ dependencies:
   flutter_feather_icons: ^2.0.0
   another_flutter_splash_screen:
   introduction_screen: ^3.1.8 #https://pub.dev/packages/introduction_screen
+  flutter_bloc: ^8.0.1
+  equatable: ^2.0.3
+  dio: ^4.0.4
+  cupertino_icons: ^1.0.4
 
 dev_dependencies:
   flutter_test:
