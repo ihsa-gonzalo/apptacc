@@ -2,7 +2,6 @@ import 'package:apptacc/model/usuario_model.dart';
 import 'package:flutter/material.dart';
 
 class LoginFormProvider extends ChangeNotifier {
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   String _usuario = '';
   String _password = '';

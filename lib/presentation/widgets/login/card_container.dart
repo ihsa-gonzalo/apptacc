@@ -13,6 +13,7 @@ class CardContainer extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 32),
       child: Card(
+        color: Colors.white,
         elevation: 3,
         child: Padding(
           padding: EdgeInsets.all(16),
@@ -32,7 +33,7 @@ class CardContainer extends StatelessWidget {
           borderRadius: BorderRadius.circular(25),
           boxShadow: [
             BoxShadow(
-              color: Colors.black12,
+              color: Colors.white,
               blurRadius: 15,
               offset: Offset(
                 0,

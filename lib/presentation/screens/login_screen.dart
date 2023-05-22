@@ -22,19 +22,24 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: 250),
               //usar margen en el cardcontainer
               CardContainer(
-                child: Column(
-                  children: [
-                    const SizedBox(height: 10),
-                    Text(
-                      'Login',
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
-                    const SizedBox(height: 30),
-                    ChangeNotifierProvider(
-                      create: (_) => LoginFormProvider(),
-                      child: _LoginForm(),
-                    )
-                  ],
+              
+                child: Container(
+                  child: Column(
+                    
+                    children: [
+                      const SizedBox(height: 10),
+                      Text(
+                        'Login',
+                        
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.black),
+                      ),
+                      const SizedBox(height: 30),
+                      ChangeNotifierProvider(
+                        create: (_) => LoginFormProvider(),
+                        child: _LoginForm(),
+                      )
+                    ],
+                  ),
                 ),
               ),
               const SizedBox(height: 50),
@@ -46,6 +51,7 @@ class LoginScreen extends StatelessWidget {
                   'Crear una nueva cuenta',
                   style: TextStyle(
                     fontSize: 18,
+                    color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -66,11 +72,10 @@ class _LoginForm extends StatelessWidget {
     final loginForm = Provider.of<LoginFormProvider>(context);
     return Form(
       // es la forma univoca de llamarlo dentro del arbol de widget
-      key: loginForm.formKey,
-      autovalidateMode: AutovalidateMode.onUserInteraction,
       child: Column(
         children: [
           TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             autocorrect: false,
             maxLength: 20,
             keyboardType: TextInputType.emailAddress,
@@ -91,6 +96,7 @@ class _LoginForm extends StatelessWidget {
           TextFormField(
             autocorrect: false,
             obscureText: true,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             keyboardType: TextInputType.number,
             decoration: InputDecorations.authInputDecoration(
                 hintText: '*****',

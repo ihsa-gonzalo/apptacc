@@ -37,7 +37,7 @@ class _ListShopsState extends State<ListShops> {
   Widget build(BuildContext context) {
     String? categoria = ModalRoute.of(context)?.settings.arguments.toString();
     final loginForm = Provider.of<LoginFormProvider>(context);
-    loginForm.setUser(user);
+    
 
     return Scaffold(
       appBar: AppBar(
