@@ -1,9 +1,11 @@
+import 'package:apptacc/presentation/screens/create_screen.dart';
 import 'package:apptacc/presentation/screens/home_screen.dart';
 import 'package:apptacc/presentation/screens/list_shops.dart';
 import 'package:apptacc/presentation/screens/login_screen.dart';
 import 'package:apptacc/presentation/screens/onboarding_screen.dart';
 import 'package:apptacc/presentation/screens/search_screen.dart';
 import 'package:apptacc/presentation/screens/splash_screen.dart';
+import 'package:apptacc/provider/create_form_provider.dart';
 import 'package:apptacc/provider/login_provider.dart';
 import 'package:apptacc/provider/search_provider.dart';
 import 'package:flutter/material.dart';
@@ -27,11 +29,15 @@ class MainApp extends StatelessWidget {
           ),
           ChangeNotifierProvider(
             create: (context) => LoginFormProvider(),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => CreateFormProvider(),
           )
         ],
         child: MaterialApp(
-          initialRoute: "login",
+          initialRoute: "create",
           routes: {
+            "create": (context) => const CreateScreen(),
             "search": (context) => const SearchScreen(),
             "splash": (context) => const SplashScreen(),
             "onboarding": (context) => const OnBoardingScreen(),
