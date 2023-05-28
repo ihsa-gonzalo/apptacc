@@ -2,6 +2,7 @@ import 'package:apptacc/presentation/screens/create_screen.dart';
 import 'package:apptacc/presentation/screens/home_screen.dart';
 import 'package:apptacc/presentation/screens/list_shops.dart';
 import 'package:apptacc/presentation/screens/login_screen.dart';
+import 'package:apptacc/presentation/screens/maps_screen.dart';
 import 'package:apptacc/presentation/screens/onboarding_screen.dart';
 import 'package:apptacc/presentation/screens/search_screen.dart';
 import 'package:apptacc/presentation/screens/splash_screen.dart';
@@ -35,8 +36,9 @@ class MainApp extends StatelessWidget {
           )
         ],
         child: MaterialApp(
-          initialRoute: "create",
+          initialRoute: "maps",
           routes: {
+            "maps": (context) => const MapScreen(),
             "create": (context) => const CreateScreen(),
             "search": (context) => const SearchScreen(),
             "splash": (context) => const SplashScreen(),
