@@ -73,9 +73,9 @@ class _ListShopsState extends State<ListShops> {
                 subtitle: loginForm.user!= null ? const Text('Presiona para salir') : const Text('Presiona para entrar'),
                 onTap: () 
                 {
-                  if (loginForm.user==null)
-                          Navigator.popAndPushNamed(context, "login");
-                  else
+                  if (loginForm.user==null) {
+                    Navigator.popAndPushNamed(context, "login");
+                  } else
                   {
                     user = null;
                     //TODO llamar al provider

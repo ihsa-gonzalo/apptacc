@@ -1,4 +1,3 @@
-import 'package:apptacc/config/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
@@ -32,7 +31,7 @@ class OnBoardingMenu {
             imageAlignment: Alignment.topCenter,
           )),
           PageViewModel(
-        titleWidget: Container(margin: EdgeInsets.only(top: 30),  child: Text("Valora y deja tu reseña", style: titleStyle, textAlign: TextAlign.center)),
+        titleWidget: Container(margin: const EdgeInsets.only(top: 30),  child: Text("Valora y deja tu reseña", style: titleStyle, textAlign: TextAlign.center)),
         reverse: true,
         bodyWidget: Text("Colabora con la guía de comercios para ayudar a toda la comunidad celíaca.", style: bodyStyle, textAlign: TextAlign.center),
         image: buildImage("question.jpg"),

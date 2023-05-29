@@ -67,8 +67,8 @@ class _CreateForm extends StatelessWidget {
                       name: createFormProvider.name,
                       phone: createFormProvider.phone);
 
-                  print("nombre: " + miUsuario.name);
-                  print("telefono: " + miUsuario.phone);
+                  print("nombre: ${miUsuario.name}");
+                  print("telefono: ${miUsuario.phone}");
 
                   return ListShops(
                     miUsuario,

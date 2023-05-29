@@ -1,4 +1,3 @@
-import 'package:apptacc/config/theme.dart';
 import 'package:flutter/material.dart';
 
 class AuthBackground extends StatelessWidget {

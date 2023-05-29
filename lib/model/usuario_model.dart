@@ -8,6 +8,6 @@ class user_model {
 
   @override
   String toString() {
-    return this.name + " " + this.phone;
+    return "$name $phone";
   }
 }

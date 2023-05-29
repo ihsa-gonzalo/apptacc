@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:apptacc/model/shop_model.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 
 import '../data/local_shops.dart';
 

@@ -1,6 +1,5 @@
 import 'package:apptacc/config/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
 import '../../config/home_menu.dart';
 import '../widgets/home_cell.dart';
@@ -12,7 +11,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('AppTacc'),
+        title: const Text('AppTacc'),
         backgroundColor: AppTheme.naranja,
       ),
       backgroundColor: AppTheme.fondo,

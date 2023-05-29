@@ -23,7 +23,7 @@ class _SearchScreenState extends State<SearchScreen> {
             leading: Consumer<SearchProvider>(builder: (context, value, child) {
               if (value.isSearching) {
                 return IconButton(
-                  icon: Icon(Icons.arrow_back),
+                  icon: const Icon(Icons.arrow_back),
                   onPressed: () {
                     value.setIsSearching(false);
                   },

@@ -9,7 +9,7 @@ class ShopsBloc extends Bloc<ShopsEvent, ShopsState>
 {
   ShopsBloc() : super(ShopsInitial()) 
   {
-    final ApiRepository _apiRepository = ApiRepository();
+    final ApiRepository apiRepository = ApiRepository();
 
     
     on<GetShopList>((event, emit) async 
@@ -17,7 +17,7 @@ class ShopsBloc extends Bloc<ShopsEvent, ShopsState>
       try 
       {
         emit(ShopsLoading());
-        final mList = await _apiRepository.fetchShopList();
+        final mList = await apiRepository.fetchShopList();
         emit(ShopsLoaded(mList));
         if (mList.isEmpty) {
           emit(const ShopsError("Lista vacia"));
@@ -34,7 +34,7 @@ class ShopsBloc extends Bloc<ShopsEvent, ShopsState>
     {
       
         emit(ShopsLoading());
-        final mList = await _apiRepository.fetchLocalShopList();
+        final mList = await apiRepository.fetchLocalShopList();
         emit(ShopsLoaded(mList));
         if (mList.isEmpty) {
           emit(const ShopsError("Lista vacia"));

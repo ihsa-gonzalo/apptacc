@@ -27,7 +27,7 @@ class ShopRow extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           children: [
             Container(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
                 margin: const EdgeInsets.only(bottom: 0, top: 0, left: 10),
                 child: Expanded(
                   child: Image.network(
@@ -51,7 +51,7 @@ class ShopRow extends StatelessWidget {
                   ),
                 )),
             Container(
-              margin: EdgeInsets.only(left: 10),
+              margin: const EdgeInsets.only(left: 10),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,

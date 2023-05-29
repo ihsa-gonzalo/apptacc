@@ -16,7 +16,11 @@ class HomeCell extends StatelessWidget {
       child: GestureDetector(
         onTap: () 
         {
-          Navigator.pushNamed(context, "shops",arguments: menu.categoria);
+          if (menu.categoria == "mapa") {
+            Navigator.pushNamed(context, "maps",arguments: menu.categoria);
+          } else {
+            Navigator.pushNamed(context, "shops",arguments: menu.categoria);
+          }
         },
         child: Container(
         height: 150,

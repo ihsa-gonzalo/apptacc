@@ -3,6 +3,7 @@ import 'package:apptacc/config/theme.dart';
 import 'package:apptacc/presentation/screens/home_screen.dart';
 import 'package:apptacc/presentation/screens/onboarding_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -26,6 +27,22 @@ class SplashScreen extends StatelessWidget {
           animationDuration: const Duration(milliseconds: 1000),
           onAnimationEnd: () => debugPrint("On Scale End"),
           defaultNextScreen: const OnBoardingScreen(),
+          setNextScreenAsyncCallback: () async
+           {
+            
+            final SharedPreferences prefs = await SharedPreferences.getInstance();
+            bool? showHome = prefs.getBool("showHome");
+            if ((showHome==null) || (!showHome) )
+            {
+                return const OnBoardingScreen();
+            }
+            else
+            {
+              return const HomeScreen();
+            }
+
+          },
+         
         );
   }
 }

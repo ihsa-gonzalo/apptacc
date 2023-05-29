@@ -36,7 +36,7 @@ class MainApp extends StatelessWidget {
           )
         ],
         child: MaterialApp(
-          initialRoute: "maps",
+          initialRoute: "splash",
           routes: {
             "maps": (context) => const MapScreen(),
             "create": (context) => const CreateScreen(),
