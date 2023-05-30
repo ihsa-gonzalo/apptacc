@@ -4,43 +4,43 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../resources/api_repository.dart';
 
-
-class ShopsBloc extends Bloc<ShopsEvent, ShopsState> 
-{
-  ShopsBloc() : super(ShopsInitial()) 
-  {
+class ShopsBloc extends Bloc<ShopsEvent, ShopsState> {
+  ShopsBloc() : super(ShopsInitial()) {
     final ApiRepository apiRepository = ApiRepository();
 
-    
-    on<GetShopList>((event, emit) async 
-    {
-      try 
-      {
+    on<GetSearchLocalShopList>(
+      (event, emit) async {
+        emit(ShopsLoading());
+        final mList = await apiRepository.fetchSearchLocalShopList(event.name);
+        emit(ShopsLoaded(mList));
+        if (mList.isEmpty) {
+          emit(const ShopsError("Lista vacia"));
+        }
+      },
+    );
+
+    on<GetShopList>((event, emit) async {
+      try {
         emit(ShopsLoading());
         final mList = await apiRepository.fetchShopList();
         emit(ShopsLoaded(mList));
         if (mList.isEmpty) {
           emit(const ShopsError("Lista vacia"));
         }
-      } 
-      on NetworkError 
-      {
+      } on NetworkError {
         emit(const ShopsError("Failed to fetch data. is your device online?"));
       }
     });
-    
 
-    on<GetLocalShopList>((event, emit) async
-    {
-      
+    on<GetLocalShopList>(
+      (event, emit) async {
         emit(ShopsLoading());
         final mList = await apiRepository.fetchLocalShopList();
         emit(ShopsLoaded(mList));
         if (mList.isEmpty) {
           emit(const ShopsError("Lista vacia"));
         }
-
-    },);
-
+      },
+    );
   }
 }
