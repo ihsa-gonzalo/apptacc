@@ -22,3 +22,4 @@ class ShopsError extends ShopsState {
   final String? message;
   const ShopsError(this.message);
 }
+

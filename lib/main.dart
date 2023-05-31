@@ -1,3 +1,4 @@
+import 'package:apptacc/model/shop_model.dart';
 import 'package:apptacc/presentation/screens/create_screen.dart';
 import 'package:apptacc/presentation/screens/home_screen.dart';
 import 'package:apptacc/presentation/screens/list_shops.dart';
@@ -6,6 +7,7 @@ import 'package:apptacc/presentation/screens/maps_screen.dart';
 import 'package:apptacc/presentation/screens/onboarding_screen.dart';
 import 'package:apptacc/presentation/screens/search_screen.dart';
 import 'package:apptacc/presentation/screens/splash_screen.dart';
+import 'package:apptacc/presentation/widgets/shop_row.dart';
 import 'package:apptacc/provider/create_form_provider.dart';
 import 'package:apptacc/provider/login_provider.dart';
 import 'package:apptacc/provider/search_provider.dart';
@@ -40,12 +42,23 @@ class MainApp extends StatelessWidget {
           routes: {
             "maps": (context) => const MapScreen(),
             "create": (context) => const CreateScreen(),
-            "search": (context) => const SearchScreen(),
             "splash": (context) => const SplashScreen(),
             "onboarding": (context) => const OnBoardingScreen(),
             "home": (context) => const HomeScreen(),
             "login": (context) => const LoginScreen(),
             "shops": (context) => const ListShops(null),
+            //esto es para probar de manera separada
+            "shop": (context) => ShopRow(
+                  onTapFav: () {},
+                  ShopModel(
+                    categorias: List.empty(),
+                    direccion: "aaaaa",
+                    nombre: "ejemplo",
+                    imagenURL:
+                        "https://i.ibb.co/VVNHCFp/66184174-443436976208009-7218785120478560256-n.jpg",
+                    isFavourite: true,
+                  ),
+                ),
           },
           theme: AppTheme().getTheme(),
           debugShowCheckedModeBanner: false,

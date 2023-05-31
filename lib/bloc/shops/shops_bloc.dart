@@ -1,32 +1,53 @@
+import 'dart:async';
+
 import 'package:apptacc/bloc/shops/shops_event.dart';
 import 'package:apptacc/bloc/shops/shops_state.dart';
+import 'package:apptacc/model/shop_model.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../resources/api_repository.dart';
 
 class ShopsBloc extends Bloc<ShopsEvent, ShopsState> {
+  List<ShopModel> mList = [];
+
   ShopsBloc() : super(ShopsInitial()) {
     final ApiRepository apiRepository = ApiRepository();
+
+    on<ShopUpdateFav>(
+      (event, emit) {
+        emit(ShopsLoading());
+        bool? isFav = event.isFav;
+        int? pos = event.position;
+        mList[pos!].isFavourite = isFav!;
+        emit(ShopsLoaded(mList));
+      },
+    );
 
     on<GetSearchLocalShopList>(
       (event, emit) async {
         emit(ShopsLoading());
-        final mList = await apiRepository.fetchSearchLocalShopList(event.name);
+        mList = await apiRepository.fetchSearchLocalShopList(event.name);
         emit(ShopsLoaded(mList));
-        if (mList.isEmpty) {
-          emit(const ShopsError("Lista vacia"));
-        }
       },
     );
 
     on<GetShopList>((event, emit) async {
       try {
         emit(ShopsLoading());
-        final mList = await apiRepository.fetchShopList();
+        mList = await apiRepository.fetchShopList();
         emit(ShopsLoaded(mList));
-        if (mList.isEmpty) {
-          emit(const ShopsError("Lista vacia"));
+      } on DioError catch (ex) 
+      {
+        if (ex.type == DioErrorType.connectTimeout)
+        {
+          emit(const ShopsError("El servidor no respondio. Se cargará la lista local"));
         }
+        else
+        {
+          emit(const ShopsError("Error no contemplado"));
+        }
+        
       } on NetworkError {
         emit(const ShopsError("Failed to fetch data. is your device online?"));
       }
@@ -35,11 +56,10 @@ class ShopsBloc extends Bloc<ShopsEvent, ShopsState> {
     on<GetLocalShopList>(
       (event, emit) async {
         emit(ShopsLoading());
-        final mList = await apiRepository.fetchLocalShopList();
+        mList = await apiRepository.fetchLocalShopList();
         emit(ShopsLoaded(mList));
-        if (mList.isEmpty) {
-          emit(const ShopsError("Lista vacia"));
-        }
+
+        ///emit (ShopsError("Error"));
       },
     );
   }

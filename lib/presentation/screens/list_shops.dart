@@ -25,16 +25,19 @@ class ListShops extends StatefulWidget {
 class _ListShopsState extends State<ListShops> {
   final ShopsBloc _newBloc = ShopsBloc();
   final TextEditingController _searchController = TextEditingController();
-  
 
   user_model? user;
 
   @override
   void initState() {
-    //_newBloc.add(GetShopList());
-    _newBloc.add(GetLocalShopList());
     user = widget.user;
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _searchController.dispose(); //buena practica para liberar memoria
   }
 
   @override
@@ -56,19 +59,13 @@ class _ListShopsState extends State<ListShops> {
                       ),
                       onChanged: (text) {
                         value.setSearchText(text);
-                        
                       },
-                      onSubmitted: (value) 
-                      {
-                        if (value.isEmpty)
-                        {
+                      onSubmitted: (value) {
+                        if (value.isEmpty) {
                           _newBloc.add(GetLocalShopList());
-                        }
-                        else
-                        {
+                        } else {
                           _newBloc.add(GetSearchLocalShopList(value));
                         }
-                        
                       },
                     )
                   : const Text('AppTacc'),
@@ -100,8 +97,7 @@ class _ListShopsState extends State<ListShops> {
                   _newBloc.add(GetLocalShopList());
                 },
               );
-            } else
-             {
+            } else {
               return IconButton(
                 icon: const Icon(Icons.menu),
                 onPressed: () {
@@ -156,31 +152,43 @@ class _ListShopsState extends State<ListShops> {
           )
         ],
       )),
-      body: Consumer<SearchProvider>(builder: (context, value, child) 
-      {
+      body: Consumer<SearchProvider>(builder: (context, value, child) {
         return Container(
             margin: const EdgeInsets.all(8),
             child: BlocProvider(
                 create: (context) => _newBloc,
                 child: BlocListener<ShopsBloc, ShopsState>(
-                  listener: (context, state) {
+                  listener: (context, state) { //para continuar flujo
                     if (state is ShopsError) {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         content: Text(state.message!),
                       ));
+                      _newBloc.add(GetLocalShopList());
                     }
+                    
                   },
                   child: BlocBuilder<ShopsBloc, ShopsState>(
                       builder: (context, state) {
-                    if (state is ShopsInitial) {
-                      return const Text('ShopsInitial');
-                    } else if (state is ShopsLoading) {
+                     if (state is ShopsInitial) 
+                    {
+                      _newBloc.add(GetShopList());
                       return _buildLoading();
-                    } else if (state is ShopsLoaded) {
-                      return _buildList(context, state.list);
-                    } else if (state is ShopsError) {
-                      return Container();
-                    } else {
+                    }
+                    else if (state is ShopsLoading) {
+                      return _buildLoading();
+                    }
+                    else if (state is ShopsLoaded) 
+                    {
+                      return state.list.isEmpty ? const Center(child: Text("No hay locales disponibles",style: TextStyle(color: Colors.black),)) : _buildList(context, state.list);
+                    }
+                    /*
+                    else if (state is ShopsError)
+                    {
+                      return Center(child: Text(state.message!,style: TextStyle(color: Colors.black),));
+                    }
+                    */
+                    else 
+                    {
                       return Container();
                     }
                   }),
@@ -195,7 +203,13 @@ class _ListShopsState extends State<ListShops> {
     return ListView.builder(
       itemCount: list.length,
       itemBuilder: (context, index) {
-        return ShopRow(list[index]);
+        return ShopRow(
+          list[index],
+          onTapFav: () {
+            list[index].isFavourite = !(list[index].isFavourite!);
+            _newBloc.add(ShopUpdateFav(list[index].isFavourite, index));
+          },
+        );
       },
     );
   }

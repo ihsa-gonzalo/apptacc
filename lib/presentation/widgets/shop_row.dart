@@ -5,15 +5,16 @@ import '../../config/theme.dart';
 
 class ShopRow extends StatelessWidget {
   final ShopModel shopModel;
+  void Function()? onTapFav;
 
-  const ShopRow(this.shopModel, {super.key});
+  ShopRow(this.shopModel, {super.key, required this.onTapFav});
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Expanded(
           child: Container(
-        height: 100,
+        height: 120,
         margin: const EdgeInsets.all(10),
         decoration: BoxDecoration(
             color: AppTheme.naranja,
@@ -30,54 +31,73 @@ class ShopRow extends StatelessWidget {
               padding: const EdgeInsets.all(10),
                 margin: const EdgeInsets.only(bottom: 0, top: 0, left: 10),
                 child: Expanded(
-                  child: Image.network(
-                    shopModel.imagenURL!,
-                    fit: BoxFit.cover,
-                    width: 100,
-                    height: 100,
-                    loadingBuilder: (context, child, loadingProgress) {
-                      if (loadingProgress == null) {
-                        return child;
-                      }
-                      return Center(
-                        child: CircularProgressIndicator(
-                          value: loadingProgress.expectedTotalBytes != null
-                              ? loadingProgress.cumulativeBytesLoaded /
-                                  loadingProgress.expectedTotalBytes!
-                              : null,
-                        ),
-                      );
-                    },
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image.network(
+                      shopModel.imagenURL!,
+                      fit: BoxFit.cover,
+                      width: 100,
+                      height: 100,
+                      loadingBuilder: (context, child, loadingProgress) {
+                        if (loadingProgress == null) {
+                          return child;
+                        }
+                        return Center(
+                          child: CircularProgressIndicator(
+                            value: loadingProgress.expectedTotalBytes != null
+                                ? loadingProgress.cumulativeBytesLoaded /
+                                    loadingProgress.expectedTotalBytes!
+                                : null,
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 )),
-            Container(
-              margin: const EdgeInsets.only(left: 10),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(shopModel.nombre!,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: AppTheme.textSizeMedium,
-                          fontFamily: 'Intro')),
-                  Text(shopModel.direccion!,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: AppTheme.textSizeMedium,
-                          fontFamily: 'Intro')),
-                  Text(shopModel.categorias.toString(),
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: AppTheme.textSizeMedium,
-                          fontFamily: 'Intro'))
-                ],
+            Expanded(
+              child: Container(
+                margin: const EdgeInsets.only(left: 10),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Flexible(
+                      child: Text(shopModel.nombre!,
+                       overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: AppTheme.textSizeMedium,
+                              fontFamily: 'Intro')),
+                    ),
+                    Flexible(
+                      child: Text(shopModel.direccion!,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: AppTheme.textSizeMedium,
+                              fontFamily: 'Intro')),
+                    ),
+                    Text(shopModel.categorias.toString(),
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: AppTheme.textSizeMedium,
+                            fontFamily: 'Intro'))
+                  ],
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: onTapFav,
+              child: Container(
+                margin: const EdgeInsets.only(right: 10),
+                child: Icon(shopModel.isFavourite! == true ? Icons.favorite : Icons.favorite_border_outlined)
               ),
             )
+          
           ],
         ),
       )),

@@ -20,6 +20,7 @@ class ShopModel {
   String? imagenURL;
   int? validado;
   double? distance;
+  bool? isFavourite;
 
   ShopModel(
       {this.id,
@@ -40,7 +41,9 @@ class ShopModel {
       this.telefono,
       this.imagenURL,
       this.validado,
-      this.distance});
+      this.distance,
+      this.isFavourite
+      });
 
   ShopModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -62,6 +65,7 @@ class ShopModel {
     imagenURL = json['imagenURL'];
     validado = json['validado'];
     distance = json['distance'];
+    isFavourite = false;
   }
 
   Map<String, dynamic> toJson() {
