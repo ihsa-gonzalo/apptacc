@@ -44,6 +44,7 @@ class _ListShopsState extends State<ListShops> {
   Widget build(BuildContext context) {
     String? categoria = ModalRoute.of(context)?.settings.arguments.toString();
     final loginForm = Provider.of<LoginFormProvider>(context);
+    bool isShowingFav = false;
 
     return Scaffold(
       appBar: AppBar(
@@ -55,7 +56,7 @@ class _ListShopsState extends State<ListShops> {
                   ? TextField(
                       controller: _searchController,
                       decoration: const InputDecoration(
-                        hintText: 'Search',
+                        hintText: 'Búsqueda',
                       ),
                       onChanged: (text) {
                         value.setSearchText(text);
@@ -75,9 +76,10 @@ class _ListShopsState extends State<ListShops> {
         backgroundColor: AppTheme.naranja,
         actions: <Widget>[
           Consumer<SearchProvider>(
-            builder: (context, value, child) {
+            builder: (context, value, child) 
+            {
               return IconButton(
-                icon: const Icon(Icons.search),
+                icon: const Icon(Icons.search, color: Colors.white,),
                 onPressed: () {
                   _searchController.text = "";
                   value.setIsSearching(true);
@@ -85,6 +87,22 @@ class _ListShopsState extends State<ListShops> {
               );
             },
           ),
+          IconButton(
+                icon: const Icon(Icons.favorite, color: Colors.white,),
+                onPressed: () 
+                {
+                    if (!isShowingFav)
+                    {                      
+                      _newBloc.add(GetFavShopList());
+                    }  
+                    else
+                    {
+                      _newBloc.add(RestoreShopList());
+                    }
+                    isShowingFav = !isShowingFav;
+                },
+              )
+          ,
         ],
         leading: Consumer<SearchProvider>(
           builder: (context, value, child) {
@@ -99,7 +117,7 @@ class _ListShopsState extends State<ListShops> {
               );
             } else {
               return IconButton(
-                icon: const Icon(Icons.menu),
+                icon: const Icon(Icons.menu, color: Colors.white,),
                 onPressed: () {
                   Scaffold.of(context).openDrawer();
                 },

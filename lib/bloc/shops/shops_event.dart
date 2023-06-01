@@ -11,6 +11,10 @@ class GetShopList extends ShopsEvent {}
 
 class GetLocalShopList extends ShopsEvent {}
 
+class RestoreShopList extends ShopsEvent {}
+
+class GetFavShopList extends ShopsEvent {}
+
 class GetSearchLocalShopList extends ShopsEvent 
 {
     final String name;

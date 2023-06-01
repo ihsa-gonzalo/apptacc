@@ -14,6 +14,18 @@ class ShopsBloc extends Bloc<ShopsEvent, ShopsState> {
   ShopsBloc() : super(ShopsInitial()) {
     final ApiRepository apiRepository = ApiRepository();
 
+    on<GetFavShopList>((event, emit) 
+    {
+        emit(ShopsLoading());  
+        emit(ShopsLoaded(mList.where((element) => element.isFavourite == true).toList()));
+    },);
+
+    on<RestoreShopList>((event, emit) 
+    {
+      emit(ShopsLoading());  
+      emit(ShopsLoaded(mList));
+    },);
+
     on<ShopUpdateFav>(
       (event, emit) {
         emit(ShopsLoading());
