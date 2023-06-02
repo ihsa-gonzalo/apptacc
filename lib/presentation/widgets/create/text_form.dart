@@ -27,6 +27,7 @@ class _TextFormState extends State<TextForm> {
     obscureText: widget.obscureText,
       keyboardType: widget.keyboardType,
        autocorrect: false,
+       style: const TextStyle(color: Colors.black),
        autovalidateMode: AutovalidateMode.onUserInteraction,
        validator: widget.validator,
        onChanged: widget.onChanged,

@@ -78,6 +78,7 @@ class _LoginForm extends StatelessWidget {
             autovalidateMode: AutovalidateMode.onUserInteraction,
             autocorrect: false,
             maxLength: 20,
+            style: const TextStyle(color: Colors.black),
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecorations.authInputDecoration(
               hintText: 'john.doe@gmail.com',
@@ -96,9 +97,11 @@ class _LoginForm extends StatelessWidget {
           TextFormField(
             autocorrect: false,
             obscureText: true,
+            style: const TextStyle(color: Colors.black),
             autovalidateMode: AutovalidateMode.onUserInteraction,
             keyboardType: TextInputType.number,
             decoration: InputDecorations.authInputDecoration(
+                
                 hintText: '*****',
                 labelText: 'Contraseña',
                 prefixIcon: Icons.remove_red_eye_outlined),

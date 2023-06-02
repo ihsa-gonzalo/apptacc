@@ -36,7 +36,7 @@ class _HeaderIcon extends StatelessWidget {
     return SafeArea(
       child: Container(
         width: double.infinity,
-        margin: const EdgeInsets.only(top: 30),
+        margin: const EdgeInsets.only(top: 30, bottom: 10),
         child: Image.asset(
           "assets/images/logo.png",
           height: 150,

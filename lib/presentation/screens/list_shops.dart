@@ -46,6 +46,8 @@ class _ListShopsState extends State<ListShops> {
     final loginForm = Provider.of<LoginFormProvider>(context);
     bool isShowingFav = false;
 
+    loginForm.user = user;
+
     return Scaffold(
       appBar: AppBar(
         title: Consumer<SearchProvider>(
@@ -162,7 +164,8 @@ class _ListShopsState extends State<ListShops> {
                     Navigator.popAndPushNamed(context, "login");
                   } else {
                     user = null;
-                    //TODO llamar al provider
+                    loginForm.user = null;
+                    Navigator.pop(context);
                   }
                 },
               ),

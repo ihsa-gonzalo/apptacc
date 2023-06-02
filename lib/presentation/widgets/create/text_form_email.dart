@@ -14,7 +14,9 @@ class TextFormEmail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextForm(keyboardType: TextInputType.emailAddress,false,"Correo electrónico", "Ingrese su email", Icons.email, (value) {
+    return TextForm(
+      keyboardType: TextInputType.emailAddress,false,"Correo electrónico", "Ingrese su email", Icons.email, (value) 
+      {
       createFormProvider.setEmail(value);
     }, (value) {
       if (value != null) 
